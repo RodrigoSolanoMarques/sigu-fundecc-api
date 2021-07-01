@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class CargoResource {
     }
 
     @PostMapping
-    public ResponseEntity<Cargo> criar(@RequestBody Cargo cargo, HttpServletResponse response) {
+    public ResponseEntity<Cargo> criar(@Valid @RequestBody Cargo cargo, HttpServletResponse response) {
 
         Cargo cargoCriado = cargoRepository.save(cargo);
 
