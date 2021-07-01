@@ -14,7 +14,7 @@
 	<groupId>br.com.rodrigosolanomarques</groupId>
 	<artifactId>sigu-fundecc-api</artifactId>
 
-	<version>0.0.5</version>
+	<version>0.0.6</version>
 	<name>SIGU - FUNDECC - API</name>
 	<description>API para o sistema de gerenciamento de usuários para o processo seletivo da FUNDECC.</description>
 

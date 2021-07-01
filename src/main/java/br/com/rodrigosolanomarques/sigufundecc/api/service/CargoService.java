@@ -13,7 +13,7 @@ public class CargoService {
     @Autowired
     private CargoRepository cargoRepository;
 
-    public Cargo atualziar(Long id, Cargo cargo) {
+    public Cargo atualizar(Long id, Cargo cargo) {
         Cargo cargoSalvo = cargoRepository.findById(id)
                 .orElseThrow(() -> new EmptyResultDataAccessException(1));
 
