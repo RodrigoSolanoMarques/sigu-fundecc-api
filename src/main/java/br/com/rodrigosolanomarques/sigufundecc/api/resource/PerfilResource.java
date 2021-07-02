@@ -31,7 +31,7 @@ public class PerfilResource {
     @PostMapping
     public ResponseEntity<Perfil> criar(@Valid @RequestBody Perfil perfil) {
 
-        Perfil perfilCriado = perfilRepository.save(perfil);
+        Perfil perfilCriado = perfilService.savar(perfil);
 
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequestUri()
@@ -52,7 +52,7 @@ public class PerfilResource {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Long id) {
-        perfilRepository.deleteById(id);
+        perfilService.remover(id);
     }
 
     @PutMapping("/{id}")

@@ -4,6 +4,7 @@ import br.com.rodrigosolanomarques.sigufundecc.api.service.exception.RegistroJaC
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -59,6 +60,13 @@ public class SiguFundeccExceptionHandler extends ResponseEntityExceptionHandler 
     @ExceptionHandler(RegistroJaCadastradoException.class)
     public ResponseEntity<Object> handleCpfJaCadastradoException(RegistroJaCadastradoException exception, WebRequest request) {
         Erro erro = formatarErro(exception, "registro.ja-cadastrado");
+        List<Erro> erros = Collections.singletonList(erro);
+        return handleExceptionInternal(exception, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Object> handleRegistroSendoUsadoException(DataIntegrityViolationException exception, WebRequest request) {
+        Erro erro = formatarErro(exception, "registro.sendo-usado");
         List<Erro> erros = Collections.singletonList(erro);
         return handleExceptionInternal(exception, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
