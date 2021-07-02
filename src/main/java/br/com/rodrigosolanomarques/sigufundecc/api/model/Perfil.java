@@ -1,6 +1,7 @@
 package br.com.rodrigosolanomarques.sigufundecc.api.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
@@ -15,6 +16,7 @@ public class Perfil {
 
     @NotNull
     @Size(min = 3, max = 50)
+    @NotBlank(message = "Nome é obrigatório")
     private String nome;
 
     public Long getId() {

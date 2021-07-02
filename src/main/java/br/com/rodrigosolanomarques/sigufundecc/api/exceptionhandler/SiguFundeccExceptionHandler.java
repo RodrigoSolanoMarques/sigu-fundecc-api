@@ -1,5 +1,6 @@
 package br.com.rodrigosolanomarques.sigufundecc.api.exceptionhandler;
 
+import br.com.rodrigosolanomarques.sigufundecc.api.service.exception.CpfJaCadastradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -51,6 +52,13 @@ public class SiguFundeccExceptionHandler extends ResponseEntityExceptionHandler 
     @ExceptionHandler(EmptyResultDataAccessException.class)
     public ResponseEntity<Object> handleEmptyResultDataAcessException(EmptyResultDataAccessException exception, WebRequest request) {
         Erro erro = formatarErro(exception, "recurso.nao-encontrado");
+        List<Erro> erros = Collections.singletonList(erro);
+        return handleExceptionInternal(exception, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(CpfJaCadastradoException.class)
+    public ResponseEntity<Object> handleCpfJaCadastradoException(CpfJaCadastradoException exception, WebRequest request) {
+        Erro erro = formatarErro(exception, "registro.ja-cadastrado");
         List<Erro> erros = Collections.singletonList(erro);
         return handleExceptionInternal(exception, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
