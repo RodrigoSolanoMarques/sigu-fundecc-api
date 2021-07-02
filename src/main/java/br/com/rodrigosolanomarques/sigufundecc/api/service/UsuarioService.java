@@ -3,7 +3,7 @@ package br.com.rodrigosolanomarques.sigufundecc.api.service;
 import br.com.rodrigosolanomarques.sigufundecc.api.model.Usuario;
 import br.com.rodrigosolanomarques.sigufundecc.api.repository.CargoRepository;
 import br.com.rodrigosolanomarques.sigufundecc.api.repository.UsuarioRepository;
-import br.com.rodrigosolanomarques.sigufundecc.api.service.exception.CpfJaCadastradoException;
+import br.com.rodrigosolanomarques.sigufundecc.api.service.exception.RegistroJaCadastradoException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -24,7 +24,7 @@ public class UsuarioService {
         Optional<Usuario> usuarioExistente = usuarioRepository.findByCpf(usuario.getCpf());
 
         if (usuarioExistente.isPresent()) {
-            throw new CpfJaCadastradoException("CPF já cadastrado");
+            throw new RegistroJaCadastradoException("CPF já cadastrado");
         }
         Usuario usuarioCriado = usuarioRepository.save(usuario);
 

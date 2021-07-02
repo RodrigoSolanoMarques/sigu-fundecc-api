@@ -14,9 +14,9 @@ public class Cargo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @Size(min = 3, max = 50)
     @NotBlank(message = "Nome é obrigatório")
+    @Column(unique = true)
     private String nome;
 
     public Long getId() {
